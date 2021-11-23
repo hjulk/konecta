@@ -61,8 +61,8 @@
                                             {!! Form::text('precio',null,['class'=>'form-control','id'=>'precio','placeholder'=>'Precio','onkeypress="return numero(event)"','required']) !!}
                                         </div>
                                         <div class="col-md-2">
-                                            <label for="exampleInputEmail1">Peso</label>
-                                            {!! Form::text('peso',null,['class'=>'form-control','id'=>'precio','placeholder'=>'Peso','onkeypress="return numero(event)"','required']) !!}
+                                            <label for="exampleInputEmail1">Peso Kg</label>
+                                            {!! Form::text('peso',null,['class'=>'form-control','id'=>'peso','placeholder'=>'Peso','onkeypress="return numero(event)"','required']) !!}
                                         </div>
                                         <div class="col-md-2">
                                             <label for="exampleInputEmail1">Stock</label>
@@ -93,7 +93,7 @@
                                             <th>Precio</th>
                                             <th>Peso</th>
                                             <th>Stock</th>
-                                            <th>Fecha Actualización</th>
+                                            <th>Fecha Creación</th>
                                             <th>Fecha Ultima Venta</th>
                                             <th>Acciones</th>
                                         </tr>
@@ -111,15 +111,16 @@
                                                 <td>{{$value['fecha_creacion']}}</td>
                                                 <td>{{$value['fecha_ultima_venta']}}</td>
                                                 <td><a href="#" class="btn btn-warning" title="Editar" data-toggle="modal" data-target="#modal-productoUpd" onclick="obtener_datos_producto('{{$value['id']}}');"><i class="fas fa-edit"></i></a>&nbsp;
-                                                    <a href="#" class="btn btn-success" title="Editar" data-toggle="modal" data-target="#modal-productoBuy" onclick="obtener_datos_venta('{{$value['id']}}');"><i class="fas fa-shopping-cart"></i></a>
+                                                    {!! $value['venta'] !!}&nbsp;
+                                                    <a href="#" class="btn btn-danger" title="Borrar" onclick="borrar_producto('{{$value['id']}}');"><i class="fas fa-trash-alt"></i></a>
                                                 </td>
                                                 <input type="hidden" value="{{$value['id']}}" id="id{{$value['id']}}">
                                                 <input type="hidden" value="{{$value['nombre_producto']}}" id="nombre_producto{{$value['id']}}">
                                                 <input type="hidden" value="{{$value['referencia']}}" id="referencia{{$value['id']}}">
                                                 <input type="hidden" value="{{$value['categoria']}}" id="categoria{{$value['id']}}">
                                                 <input type="hidden" value="{{$value['precio']}}" id="precio{{$value['id']}}">
-                                                <input type="hidden" value="{{$value['stock']}}" id="precio{{$value['id']}}">
-                                                <input type="hidden" value="{{$value['peso']}}" id="precio{{$value['id']}}">
+                                                <input type="hidden" value="{{$value['stock']}}" id="stock{{$value['id']}}">
+                                                <input type="hidden" value="{{$value['peso']}}" id="peso{{$value['id']}}">
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -165,7 +166,7 @@
         @endif
 
         @if (count($errors) > 0)
-        $("#modalError").modal("show");
+            $("#modalError").modal("show");
             @foreach($errors -> all() as $error)
                 document.getElementById("errorAlert").innerHTML = "{{ $error }}";
             @endforeach

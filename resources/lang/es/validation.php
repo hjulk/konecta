@@ -91,6 +91,7 @@ return array(
         'stock' => 'Stock',
         'stock_upd' => 'Stock',
         'peso' => 'Peso',
-        'peso_upd' => 'Peso'
+        'peso_upd' => 'Peso',
+        'cantidad' => 'Cantidad'
     ),
 );

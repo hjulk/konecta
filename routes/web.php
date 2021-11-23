@@ -15,3 +15,6 @@ Artisan::call('cache:clear');
 Route::get('/',[KonectaController::class, 'Home'])->name('home');
 
 Route::post('crearProducto',[KonectaController::class, 'CrearProducto'])->name('crearProducto');
+Route::post('actualizarProducto',[KonectaController::class, 'ActualizarProducto'])->name('actualizarProducto');
+Route::post('ventaProducto',[KonectaController::class, 'VentaProducto'])->name('ventaProducto');
+Route::get('borrarProducto',[KonectaController::class, 'BorrarProducto'])->name('borrarProducto');
